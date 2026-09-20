@@ -45,6 +45,9 @@
     .grid-3 {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;}
     .card {background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;}
     .card img {width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;}
+    .card img.card-banner {height: auto; aspect-ratio: 2 / 1;}
+    .card img.card-banner.pos-left {object-position: left center;}
+    .card img.card-banner.pos-right {object-position: right center;}
     .card h3 {color: #D4A574; margin-bottom: 15px; font-size: 1.5rem;}
     .card p {color: #666; line-height: 1.6;}
     .bg-light {background: #f8f9fa;}
@@ -164,17 +167,17 @@
       
       <div class="grid-3">
         <div class="card">
-          <img src="stellest.jpg" alt="Verres Stellest Essilor">
+          <img src="stellest.jpg" alt="Verres Stellest Essilor" class="card-banner pos-left">
           <h3>Stellest®</h3>
           <p>La solution Essilor pour freiner la myopie des enfants. Efficacité cliniquement prouvée de 67% en moyenne.</p>
         </div>
         <div class="card">
-          <img src="varilux.jpg" alt="Verres Varilux Essilor">
+          <img src="varilux.jpg" alt="Verres Varilux Essilor" class="card-banner pos-right">
           <h3>Varilux®</h3>
           <p>Le verre progressif #1 mondial. Vision naturelle et nette de près comme de loin, sans effet de tangage.</p>
         </div>
         <div class="card">
-          <img src="transitions.jpg" alt="Verres Transitions Essilor">
+          <img src="transitions-banner.jpg" alt="Verres Transitions Essilor" class="card-banner">
           <h3>Transitions®</h3>
           <p>Intelligents à la lumière. Ils foncent au soleil en quelques secondes et redeviennent clairs à l’intérieur.</p>
         </div>
