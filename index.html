@@ -55,6 +55,19 @@
     .logos {display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; padding: 40px 0;}
     .logos img {height: 50px; width: auto; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: 0.3s;}
     .logos img:hover {filter: grayscale(0%); opacity: 1;}
+    .promo-slider {position: relative; max-width: 820px; margin: 0 auto;}
+    .promo-viewport {overflow: hidden; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.25);}
+    .promo-track {display: flex; transition: transform 0.5s ease;}
+    .promo-slide {flex: 0 0 100%;}
+    .promo-slide img {display: block; width: 100%; height: auto; aspect-ratio: 835 / 589; object-fit: cover;}
+    .promo-arrow {position: absolute; top: calc(50% - 20px); transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 2px solid #D4A574; background: rgba(26,26,26,0.75); color: #D4A574; font-size: 1.1rem; cursor: pointer; transition: 0.3s;}
+    .promo-arrow:hover {background: #D4A574; color: #1a1a1a;}
+    .promo-arrow.prev {left: 12px;}
+    .promo-arrow.next {right: 12px;}
+    .promo-dots {display: flex; justify-content: center; gap: 6px; margin-top: 15px;}
+    .promo-dot {position: relative; width: 28px; height: 28px; border: 0; background: none; cursor: pointer;}
+    .promo-dot::after {content: ""; position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: rgba(212,165,116,0.5); transition: 0.3s;}
+    .promo-dot.active::after {background: #D4A574; transform: scale(1.3);}
     .vitrine-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-top: 40px;}
     .vitrine-img {width: 100%; height: 350px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s;}
     .vitrine-img:hover {transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.3);}
@@ -65,6 +78,9 @@
     .contact-dark strong {color: #D4A574;}
     @media (max-width: 768px) {
       .hero h1 {font-size: 2rem;}
+      .promo-arrow {top: auto; bottom: -8px; transform: none;}
+      .promo-arrow.prev {left: calc(50% - 100px);}
+      .promo-arrow.next {right: calc(50% - 100px);}
       nav {padding: 10px 20px; gap: 0;}
       nav .brand {font-size: 1.3rem;}
       .menu-toggle {display: flex;}
@@ -85,6 +101,7 @@
       <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
       <ul id="menu">
         <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#promotions">Promotions</a></li>
         <li><a href="#essilor">Essilor Expert</a></li>
         <li><a href="#magasin">Le Magasin</a></li>
         <li><a href="#collections">Collections</a></li>
@@ -102,6 +119,36 @@
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
         <a href="tel:0357758808" class="btn">📞 03 57 75 88 08</a>
         <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/nousetleslunettes/controle-de-la-vue'});return false;" class="btn">📅 PRENDRE RDV</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promotions Demetz -->
+  <section id="promotions">
+    <div class="container">
+      <h2>Promotions Demetz</h2>
+      <p class="subtitle">Objectif sport à la vue : des forfaits lunettes de sport à votre vue • Conditions en magasin</p>
+      <div class="promo-slider" aria-roledescription="carrousel" aria-label="Promotions Demetz">
+        <div class="promo-viewport">
+          <div class="promo-track">
+            <div class="promo-slide" aria-roledescription="diapositive" aria-label="1 sur 3">
+              <img src="images/promotions/promotion_demetz_natation.jpeg" alt="Forfait lunettes de natation à la vue : 66 € TTC">
+            </div>
+            <div class="promo-slide" aria-roledescription="diapositive" aria-label="2 sur 3">
+              <img src="images/promotions/promotion_demetz_cycliste.jpeg" alt="Forfait lunettes Cyclisme, Running et Trail à la vue à partir de 125 € TTC">
+            </div>
+            <div class="promo-slide" aria-roledescription="diapositive" aria-label="3 sur 3">
+              <img src="images/promotions/promotion_demetz_sport_ballon.jpeg" alt="Forfait lunettes de protection pour sport de balles à la vue : 150 € TTC">
+            </div>
+          </div>
+        </div>
+        <button type="button" class="promo-arrow prev" data-dir="-1" aria-label="Promotion précédente">&#10094;</button>
+        <button type="button" class="promo-arrow next" data-dir="1" aria-label="Promotion suivante">&#10095;</button>
+        <div class="promo-dots">
+          <button type="button" class="promo-dot active" aria-label="Promotion 1"></button>
+          <button type="button" class="promo-dot" aria-label="Promotion 2"></button>
+          <button type="button" class="promo-dot" aria-label="Promotion 3"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -239,6 +286,54 @@
       nav.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { setOpen(false); });
       });
+    })();
+
+    // Carrousel des promotions
+    (function () {
+      var slider = document.querySelector('.promo-slider');
+      var track = slider.querySelector('.promo-track');
+      var slides = slider.querySelectorAll('.promo-slide');
+      var dots = slider.querySelectorAll('.promo-dot');
+      var current = 0, timer = null, DELAY = 6000;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function show(i) {
+        current = (i + slides.length) % slides.length;
+        track.style.transform = 'translateX(' + (-100 * current) + '%)';
+        slides.forEach(function (s, k) { s.setAttribute('aria-hidden', k !== current); });
+        dots.forEach(function (d, k) { d.classList.toggle('active', k === current); });
+      }
+      function stop() { clearInterval(timer); timer = null; }
+      function start() {
+        if (reduceMotion) return;
+        stop();
+        timer = setInterval(function () { show(current + 1); }, DELAY);
+      }
+      function go(i) { show(i); start(); }
+
+      slider.querySelectorAll('.promo-arrow').forEach(function (b) {
+        b.addEventListener('click', function () { go(current + parseInt(b.dataset.dir, 10)); });
+      });
+      dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
+
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      slider.addEventListener('focusin', stop);
+      slider.addEventListener('focusout', start);
+
+      var x0 = null;
+      slider.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, {passive: true});
+      slider.addEventListener('touchend', function (e) {
+        if (x0 !== null) {
+          var dx = e.changedTouches[0].clientX - x0;
+          if (Math.abs(dx) > 50) { x0 = null; go(current + (dx < 0 ? 1 : -1)); return; }
+        }
+        x0 = null;
+        start();
+      });
+
+      show(0);
+      start();
     })();
   </script>
 
