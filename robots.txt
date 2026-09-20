@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nous-et-les-lunettes.fr/sitemap.xml
