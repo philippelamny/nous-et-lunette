@@ -76,6 +76,8 @@
     .vitrine-img:hover {transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.3);}
     footer {background: #0d0d0d; color: white; padding: 40px 20px; text-align: center;}
     footer a {color: #D4A574; text-decoration: none;}
+    .lentilles {display: grid; grid-template-columns: 1fr 1fr; gap: 25px;}
+    .lentilles img {width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);}
     .contact-dark {text-align: center; max-width: 600px; margin: 0 auto;}
     .contact-dark p {margin-bottom: 15px; font-size: 1.1rem;}
     .contact-dark strong {color: #D4A574;}
@@ -92,6 +94,7 @@
       nav ul li a {display: block; padding: 14px 4px; font-size: 1.05rem; border-bottom: 1px solid #f0f0f0;}
       nav ul li:last-child a {border-bottom: 0;}
       .hero div {flex-direction: column;}
+      .lentilles {grid-template-columns: 1fr;}
     }
   </style>
 </head>
@@ -108,6 +111,7 @@
         <li><a href="#essilor">Essilor Expert</a></li>
         <li><a href="#magasin">Le Magasin</a></li>
         <li><a href="#collections">Collections</a></li>
+        <li><a href="#lentilles">Lentilles</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -217,6 +221,8 @@
         <img src="logo-sportconnect.png" alt="Sportconnect">
         <img src="logo-elevenparis.png" alt="Eleven Paris">
         <img src="logo-vincentkaes.png" alt="Vincent Kaes">
+        <img src="logo-vanni.png" alt="VANNI">
+        <img src="logo-xit.png" alt="XIT">
         <img src="logo-disney-princesses.png" alt="Disney Princesses">
         <img src="logo-reinedesneiges.png" alt="La Reine des Neiges">
         <img src="logo-starwars.png" alt="Star Wars">
@@ -242,6 +248,18 @@
           <h3>Atelier</h3>
           <p>Montage, réparation et ajustage réalisés sur place dans notre atelier. Service rapide.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lentilles de vue -->
+  <section id="lentilles" class="bg-light">
+    <div class="container">
+      <h2>Lentilles de vue</h2>
+      <p class="subtitle">Adaptation et conseils sur le port de vos lentilles et l'utilisation des produits de contactologie.</p>
+      <div class="lentilles">
+        <img src="lentilles.jpg" alt="Lentille de contact devant un œil" loading="lazy">
+        <img src="lentilles2.jpg" alt="Étui à lentilles et produits d'entretien" loading="lazy">
       </div>
     </div>
   </section>
